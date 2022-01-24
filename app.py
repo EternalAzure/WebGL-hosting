@@ -2,7 +2,7 @@ from flask import Flask, render_template
 
 app = Flask(__name__)
 
-@app.route("/01")
+@app.route("/")
 def index():
     return "Navigate games by adding '/<int>' to this web address eg. eternalazure-web-hosting.herokuapp.com/01"
 
