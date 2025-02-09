@@ -1,15 +1,24 @@
-from flask import Flask, render_template
+from fastapi import FastAPI, Request
+from fastapi.staticfiles import StaticFiles
+from fastapi.templating import Jinja2Templates
+from fastapi.responses import HTMLResponse, RedirectResponse
 
-app = Flask(__name__)
+app = FastAPI()
+app.mount("/static", StaticFiles(directory="static", html=True), name="static")
+templates = Jinja2Templates(directory="templates")
 
-@app.route("/")
-def index():
-    return "Navigate games by adding '/number' to this web address eg. eternalazure-web-hosting.herokuapp.com/01"
+@app.get("/", response_class=HTMLResponse)
+async def index(request: Request):
+    return "Navigate games by adding '/number' to this web address eg. localhost:5000/01"
 
-@app.route("/01")
-def first():
-    return render_template("index01.html")
+@app.get("/{id}", response_class=HTMLResponse)
+async def first(request: Request, id:int):
+    if id == 1:
+        return templates.TemplateResponse("index01.html", context={"request": request})
+    if id == 2:
+        return templates.TemplateResponse("index02.html", context={"request": request})
+    return RedirectResponse("/") 
 
-@app.route("/02")
-def second():
-    return render_template("index02.html")
+
+
+

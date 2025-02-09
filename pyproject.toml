@@ -1,0 +1,16 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "WebGL-hosting"
+version = "0.1.0"
+description = ""
+authors = []
+
+[tool.hatch.build.targets.wheel]
+packages = ["."]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+FastAPI = "^0.115.8"
