@@ -4,7 +4,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    return "Navigate games by adding '/<int>' to this web address eg. eternalazure-web-hosting.herokuapp.com/01"
+    return "Navigate games by adding '/number' to this web address eg. eternalazure-web-hosting.herokuapp.com/01"
 
 @app.route("/01")
 def first():
